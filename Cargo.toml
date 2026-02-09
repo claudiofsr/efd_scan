@@ -1,0 +1,24 @@
+[package]
+name = "efd_scan"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bytecount = "0.6"
+clap = { version = "4.5", features = ["derive"] }
+rayon = "1.11"
+memmap2 = "0.9" # Necessário para paralelismo real em arquivos
+
+# Configurações de otimização agressiva para tamanho
+[profile.release]
+opt-level = "z"     # Otimiza focado no tamanho do binário ('z' é mais agressivo que 's')
+lto = true          # Link Time Optimization: remove código morto entre todas as dependências
+codegen-units = 1   # Limita a compilação paralela para maximizar as otimizações do LTO
+panic = "abort"     # Remove a infraestrutura de "unwind" de pânico (reduz bastante o tamanho)
+strip = true        # Remove automaticamente todos os símbolos de debug e tabelas de símbolos
+
+# Compressão Externa (Opcional)
+# Se precisar de um binário menor, usar o UPX (Ultimate Packer for eXecutables):
+# No Linux (Manjaro)
+# sudo pacman -S upx
+# upx --best --lzma target/release/efd_scan
