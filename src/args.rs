@@ -24,8 +24,8 @@ pub enum TipoBusca {
     author,
     version,
     about,
-    long_about = "Uma ferramenta otimizada que utiliza mapeamento de memória e processamento paralelo \
-    para contar ocorrências de registros ou blocos inteiros em arquivos SPED de qualquer tamanho.",
+    long_about = "Uma ferramenta otimizada que utiliza mapeamento de memória e processamento \
+    paralelo para contar ocorrências de registros ou blocos em arquivos SPED.",
     next_line_help = true
 )]
 pub struct Args {
