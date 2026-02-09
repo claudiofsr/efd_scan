@@ -1,5 +1,6 @@
 [package]
 name = "efd_scan"
+description = "EFD Scan: Contador de registros ou blocos em arquivos SPED EFD Contribuições e ICMS/IPI"
 version = "0.1.0"
 edition = "2024"
 
@@ -11,11 +12,16 @@ memmap2 = "0.9" # Necessário para paralelismo real em arquivos
 
 # Configurações de otimização agressiva para tamanho
 [profile.release]
+# https://doc.rust-lang.org/cargo/reference/profiles.html
 opt-level = "z"     # Otimiza focado no tamanho do binário ('z' é mais agressivo que 's')
 lto = true          # Link Time Optimization: remove código morto entre todas as dependências
 codegen-units = 1   # Limita a compilação paralela para maximizar as otimizações do LTO
 panic = "abort"     # Remove a infraestrutura de "unwind" de pânico (reduz bastante o tamanho)
 strip = true        # Remove automaticamente todos os símbolos de debug e tabelas de símbolos
+incremental = true  # Save information to disk, improving re-compile times.
+
+[profile.dev]
+opt-level = 1       # Use slightly better optimizations.
 
 # Compressão Externa (Opcional)
 # Se precisar de um binário menor, usar o UPX (Ultimate Packer for eXecutables):
