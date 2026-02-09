@@ -1,5 +1,6 @@
 [package]
 name = "efd_scan"
+authors = ["Claudio F S Rodrigues <claudiofsrodrigues@gmail.com>"]
 description = "EFD Scan: Contador de registros ou blocos em arquivos SPED EFD Contribuições e ICMS/IPI"
 version = "0.1.0"
 edition = "2024"
